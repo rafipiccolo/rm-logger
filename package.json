@@ -1,5 +1,5 @@
 {
-  "name": "rm-logger",
+  "name": "raf-logger",
   "version": "1.0.0",
   "description": "logs data to console and my custom server",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rafipiccolo/rm-logger.git"
+    "url": "git+https://github.com/rafipiccolo/raf-logger.git"
   },
   "author": "Raphael Piccolo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rafipiccolo/rm-logger/issues"
+    "url": "https://github.com/rafipiccolo/raf-logger/issues"
   },
-  "homepage": "https://github.com/rafipiccolo/rm-logger#readme",
+  "homepage": "https://github.com/rafipiccolo/raf-logger#readme",
   "dependencies": {
     "async": "^3.1.0",
     "chalk": "^2.4.2"
