@@ -1,0 +1,23 @@
+{
+  "name": "rm-logger",
+  "version": "1.0.0",
+  "description": "logs data to console and my custom server",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafipiccolo/rm-logger.git"
+  },
+  "author": "Raphael Piccolo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafipiccolo/rm-logger/issues"
+  },
+  "homepage": "https://github.com/rafipiccolo/rm-logger#readme",
+  "dependencies": {
+    "async": "^3.1.0",
+    "chalk": "^2.4.2"
+  }
+}
