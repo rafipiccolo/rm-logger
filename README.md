@@ -4,7 +4,7 @@ log data to console & my custom monitoring server
 
 # install
 
-	$> npm install rm-logger
+	$> npm install raf-logger
 
 # Exemple
 

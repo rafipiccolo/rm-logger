@@ -1,8 +1,7 @@
 var Logger = require('./index.js')
 var config = {
     console: true,
-    password: 'XXX',
-    http: true,
+    httppassword: 'XXX',
     padSize: 20,
 };
 var logger = new Logger(config);

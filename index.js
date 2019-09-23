@@ -6,7 +6,6 @@ module.exports = class Logger {
     constructor(config) {
         config = config||{ console: true }
         this.console = config.console;
-        this.password = config.password;
         this.httppassword = config.httppassword;
         this.padSize = config.padSize;
     }
