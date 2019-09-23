@@ -24,6 +24,7 @@ log data to console & my custom monitoring server
     var logger = new Logger(config);
 
     logger.info('test', 'test', {detail: 'blabla'});
+    logger.info('test', 'test', {err: new Error('test)});
     logger.info('test', 'test', function() {
         // all logged, do something if you want
     });

@@ -1,5 +1,6 @@
 var async = require('async');
 var chalk = require('chalk');
+var request = require('request');
 var PrettyError = require('pretty-error');
 var prettyError = new PrettyError();
 
