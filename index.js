@@ -48,7 +48,7 @@ module.exports = class Logger {
                 if (level == 'info') s = chalk.blue(s);
                 console.log((new Date()).toJSON() + ' ' +  s + ' ' + message);
 
-                if (obj.err) console.log(prettyError.render(obj.err));
+                if (obj && obj.err) console.log(prettyError.render(obj.err));
 
                 ac();
             }
