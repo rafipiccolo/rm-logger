@@ -25,7 +25,7 @@ module.exports = class Logger {
                 if (level == 'info') return ac();
 
                 request({
-                    url: 'https://' + config.httppassword + '@monitoring.raphaelpiccolo.com/fr/logger',
+                    url: 'https://' + this.httppassword + '@monitoring.raphaelpiccolo.com/fr/logger',
                     method: 'POST',
                     json: {
                         date: new Date().toJSON(),
