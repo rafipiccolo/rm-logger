@@ -10,4 +10,10 @@ describe('logger', function () {
         })
     });
 
+    it('should render error', function () {
+        logger.info('test', 'test', {err: new Error('test')}, function() {
+            assert.equal(true, true);
+        })
+    });
+
 });

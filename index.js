@@ -1,5 +1,7 @@
 var async = require('async');
 var chalk = require('chalk');
+var PrettyError = require('pretty-error');
+var prettyError = new PrettyError();
 
 module.exports = class Logger {
 
@@ -11,7 +13,7 @@ module.exports = class Logger {
     }
 
     log(level, key, message, obj, callback) {
-        if (typeof obj === 'function') {}
+        if (typeof obj === 'function') {
             obj = null;
             callback = obj;
         }
@@ -30,7 +32,6 @@ module.exports = class Logger {
                         level: level,
                         key: key,
                         obj: obj,
-                        err: err
                     },
                 }, (err) => {
                     ac();
@@ -45,6 +46,9 @@ module.exports = class Logger {
                 if (level == 'error') s = chalk.red(s);
                 if (level == 'info') s = chalk.blue(s);
                 console.log((new Date()).toJSON() + ' ' +  s + ' ' + message);
+
+                if (obj.err) console.log(prettyError.render(obj.err));
+
                 ac();
             }
         }, function () {

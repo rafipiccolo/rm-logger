@@ -7,3 +7,5 @@ var config = {
 var logger = new Logger(config);
 
 logger.info('test', 'test', {detail: 'blabla'});
+
+logger.info('test', 'test', {err: new Error('test')});
