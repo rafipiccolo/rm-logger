@@ -6,6 +6,13 @@ log data to console & my custom monitoring server
 
 	$> npm install raf-logger
 
+# Usage
+
+    logger[level](key, message);
+    logger[level](key, message, object);
+    logger[level](key, message, callback);
+    logger[level](key, message, object, callback);
+
 # Exemple
 
     var Logger = require('./index.js')
@@ -17,6 +24,9 @@ log data to console & my custom monitoring server
     var logger = new Logger(config);
 
     logger.info('test', 'test', {detail: 'blabla'});
+    logger.info('test', 'test', function() {
+        // all logged, do something if you want
+    });
 
 # Run
 

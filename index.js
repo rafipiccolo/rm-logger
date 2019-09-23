@@ -11,6 +11,11 @@ module.exports = class Logger {
     }
 
     log(level, key, message, obj, callback) {
+        if (typeof obj === 'function') {}
+            obj = null;
+            callback = obj;
+        }
+
         async.auto({
             http: ac => {
                 if (!this.httppassword) return ac();
@@ -20,7 +25,11 @@ module.exports = class Logger {
                     url: 'https://' + config.httppassword + '@monitoring.raphaelpiccolo.com/fr/logger',
                     method: 'POST',
                     json: {
-                        message: data,
+                        date: new Date().toJSON(),
+                        message: s,
+                        level: level,
+                        key: key,
+                        obj: obj,
                         err: err
                     },
                 }, (err) => {
