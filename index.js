@@ -15,8 +15,8 @@ module.exports = class Logger {
 
     log(level, key, message, obj, callback) {
         if (typeof obj === 'function') {
-            obj = null;
             callback = obj;
+            obj = null;
         }
 
         async.auto({
@@ -35,6 +35,7 @@ module.exports = class Logger {
                         obj: obj,
                     },
                 }, (err) => {
+                    if (err) console.log('logger http error '+err.message);
                     ac();
                 });
             },
