@@ -29,7 +29,7 @@ module.exports = class Logger {
                     method: 'POST',
                     json: {
                         date: new Date().toJSON(),
-                        message: s,
+                        message: key,
                         level: level,
                         key: key,
                         obj: obj,
