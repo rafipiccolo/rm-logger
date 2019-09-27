@@ -1,12 +1,14 @@
 var async = require('async');
 var chalk = require('chalk');
 var request = require('request');
+var errorToObject = require('./lib/errorToObject');
 var PrettyError = require('pretty-error');
 var prettyError = new PrettyError();
 
 module.exports = class Logger {
 
     constructor(config) {
+        // concerne les logs
         config = config||{ console: true }
         this.console = config.console;
         this.httppassword = config.httppassword;
@@ -24,20 +26,15 @@ module.exports = class Logger {
                 if (!this.httppassword) return ac();
                 if (level == 'info') return ac();
 
-                request({
-                    url: 'https://' + this.httppassword + '@monitoring.raphaelpiccolo.com/fr/logger',
-                    method: 'POST',
-                    json: {
-                        date: new Date().toJSON(),
-                        message: key,
-                        level: level,
-                        key: key,
-                        obj: obj,
-                    },
-                }, (err) => {
-                    if (err) console.log('logger http error '+err.message);
-                    ac();
-                });
+                if (obj && obj.err) obj.err = errorToObject(obj.err);
+
+                this.call('POST', '/log', {
+                    date: new Date().toJSON(),
+                    message: key,
+                    level: level,
+                    key: key,
+                    obj: obj,
+                }, ac);
             },
             console: ac => {
                 if (!this.console)
@@ -76,5 +73,28 @@ module.exports = class Logger {
         this.log('ban', key, message, obj, callback);
     }
 
-}
+    // push Metric
+    sendMetric(name, value, callback) {
+        this.call('POST', '/metric', { name: name, value: value }, callback);
+    }
 
+    // getBans
+    getBans(callback) {
+        this.call('GET', '/bans', {}, callback);
+    }
+
+    // generic request
+    call(method, path, jsonbody, callback) {
+        var params = {
+            method: method,
+            url: 'https://' + this.password + 'monitoring.raphaelpiccolo.com/api/v1' + path,
+            agent: new require('https').Agent({ keepAlive: true }),
+        }
+        if (method == 'POST') params.json = jsonbody;
+        request(params, function (err, response, body) {
+            if (err) return console.log('logger http error ' + err.message);
+
+            callback(null, body)
+        });
+    }
+}
