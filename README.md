@@ -13,6 +13,12 @@ log data to console & my custom monitoring server
     logger[level](key, message, callback);
     logger[level](key, message, object, callback);
 
+levels :
+* info
+* warn
+* error
+* ban
+
 # Exemple
 
     var Logger = require('./index.js')

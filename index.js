@@ -47,6 +47,7 @@ module.exports = class Logger {
                 if (level == 'warn') s = chalk.yellow(s);
                 if (level == 'error') s = chalk.red(s);
                 if (level == 'info') s = chalk.blue(s);
+                if (level == 'ban') s = chalk.magenta(s);
                 console.log((new Date()).toJSON() + ' ' +  s + ' ' + message);
 
                 if (obj && obj.err) console.log(prettyError.render(obj.err));
@@ -69,6 +70,10 @@ module.exports = class Logger {
 
     warn(key, message, obj, callback) {
         this.log('warn', key, message, obj, callback);
+    }
+
+    ban(key, message, obj, callback) {
+        this.log('ban', key, message, obj, callback);
     }
 
 }

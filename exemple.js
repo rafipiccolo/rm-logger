@@ -10,4 +10,6 @@ var logger = new Logger(config);
 
 // logger.info('test', 'test', {err: new Error('test')});
 
-logger.info('test', 'test', () => console.log('callback'));
+// logger.info('test', 'test', () => console.log('callback'));
+
+logger.ban('test', 'test');
