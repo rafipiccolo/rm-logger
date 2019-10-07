@@ -12,6 +12,8 @@ log data to console & my custom monitoring server
     logger[level](key, message, object);
     logger[level](key, message, callback);
     logger[level](key, message, object, callback);
+    logger.metric(name, value);
+    logger.getBans();
 
 levels :
 * info
@@ -21,19 +23,7 @@ levels :
 
 # Exemple
 
-    var Logger = require('./index.js')
-    var config = {
-        console: true,
-        httppassword: 'XXX',
-        padSize: 0,
-    };
-    var logger = new Logger(config);
-
-    logger.info('test', 'test', {detail: 'blabla'});
-    logger.info('test', 'test', {err: new Error('test)});
-    logger.info('test', 'test', function() {
-        // all logged, do something if you want
-    });
+see [exemple.js](exemple.js)
 
 # Run
 
@@ -43,5 +33,7 @@ levels :
 # Config
 
 * console : activate console logging
-* httppassword : activate logging to my custom server
 * padSize : pad "level:key" on X characters
+* socketPassword : activate logging to my custom server
+* socketPort : custom server port
+* socketHost : custom server host
