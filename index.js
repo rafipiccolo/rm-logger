@@ -16,6 +16,7 @@ module.exports = class Logger {
         this.padSize = config.padSize;
         this.socketPort = config.socketPort||3333;
         this.socketHost = config.socketPort||'127.0.0.1';
+        this.project = config.project || '';
         
         if (this.socketPassword) {
             this.socketConnect();
@@ -80,6 +81,7 @@ module.exports = class Logger {
 
                 this.call({
                     type: 'log',
+                    project: this.project,
                     date: new Date().toJSON(),
                     message: key,
                     level: level,
@@ -119,8 +121,8 @@ module.exports = class Logger {
         }
         var socket = new net.Socket();
         socket.connect(this.socketPort, this.socketHost);
-        socket.write(JSON.stringify({ type: 'auth', password: this.socketPassword }) + '\n', () => {
-            console.log('this.socketPassword', this.socketPassword);
+        socket.write(JSON.stringify({ type: 'auth', password: this.socketPassword }) + '\n', (err) => {
+            if (err) return callback(err);
             this.socket = socket;
         });
         

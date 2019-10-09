@@ -37,3 +37,4 @@ see [exemple.js](exemple.js)
 * socketPassword : activate logging to my custom server
 * socketPort : custom server port
 * socketHost : custom server host
+* project : the project name (used only for socket logging)
