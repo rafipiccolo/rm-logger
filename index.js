@@ -33,9 +33,10 @@ module.exports = class Logger {
             if (err) console.log('logger socket error ' + err.message);
 
             this.socket = null;
-            setTimeout(() => {
+            var timeout = setTimeout(() => {
                 this.socketConnect();
-            }, 1000)
+            }, 1000);
+            timeout.unref();
         })
     }
 

@@ -2,7 +2,7 @@ var Logger = require('./index.js')
 var config = {
     console: true,
     socketPassword: 'xxx',
-    socketPort: '3000',
+    socketPort: '300',
     socketHost: 'localhost',
     project: require('./package.json').name,
     padSize: 20,
