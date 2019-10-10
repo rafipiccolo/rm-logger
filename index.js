@@ -100,8 +100,9 @@ module.exports = class Logger {
         });
     }
 
-
     callConnect(obj, callback) {
+        if (!callback) callback = () => { };
+
         var call = 0;
         var realcallback = callback;
         callback = function(err, data) {
@@ -146,6 +147,7 @@ module.exports = class Logger {
 
     // generic request
     call(obj, callback) {
+        if (!callback) callback = () => {};
         if (!this.socket) return callback();
 
         this.socket.write(JSON.stringify(obj)+'\n', function (err) {

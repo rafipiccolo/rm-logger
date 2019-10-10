@@ -1,6 +1,6 @@
 {
   "name": "raf-logger",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "logs data to console and my custom server",
   "main": "index.js",
   "scripts": {
