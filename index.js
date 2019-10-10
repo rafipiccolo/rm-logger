@@ -15,7 +15,7 @@ module.exports = class Logger {
         this.socketPassword = config.socketPassword;
         this.padSize = config.padSize;
         this.socketPort = config.socketPort||3333;
-        this.socketHost = config.socketPort||'127.0.0.1';
+        this.socketHost = config.socketHost||'127.0.0.1';
         this.project = config.project || '';
         
         if (this.socketPassword) {
@@ -24,22 +24,12 @@ module.exports = class Logger {
     }
 
     socketConnect() {
-        var socket = new net.Socket();
-        socket.connect(this.socketPort, this.socketHost);
-        socket.write(JSON.stringify({ type: 'auth', password: this.socketPassword }) + '\n', () => {
-            this.socket = socket;
-        });
+        this.socket = new net.Socket();
+        this.socket.unref();
+        this.socket.connect(this.socketPort, this.socketHost);
+        this.socket.write(JSON.stringify({ type: 'auth', password: this.socketPassword }) + '\n');
 
-        // var x = socket.pipe(ndjson.parse());
-        // x.on('error', function(err){
-        //     if (err) return console.log('server sent bad json ' + err.message });
-        //     socket.end(JSON.stringify({ type: 'error', message: 'bad json' }) + '\n');
-        // });
-        // x.on('data', function (obj) {
-
-        // });
-
-        socket.on('error', (err) => {
+        this.socket.on('error', (err) => {
             if (err) console.log('logger socket error ' + err.message);
 
             this.socket = null;
