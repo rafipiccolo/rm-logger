@@ -9,7 +9,6 @@ var ndjson = require('ndjson')
 module.exports = class Logger {
 
     constructor(config) {
-        // concerne les logs
         config = config||{ console: true }
         this.console = config.console;
         this.socketPassword = config.socketPassword;
