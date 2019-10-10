@@ -73,7 +73,7 @@ module.exports = class Logger {
                     type: 'log',
                     project: this.project,
                     date: new Date().toJSON(),
-                    message: key,
+                    message: message,
                     level: level,
                     key: key,
                     obj: obj,
