@@ -9,13 +9,13 @@ var ndjson = require('ndjson')
 module.exports = class Logger {
 
     constructor(config) {
-        config = config||{ console: true }
-        this.console = config.console;
+        config = config||{}
+        this.console = config.console||true;
         this.socketPassword = config.socketPassword;
         this.padSize = config.padSize;
         this.socketPort = config.socketPort||3333;
         this.socketHost = config.socketHost||'127.0.0.1';
-        this.project = config.project || '';
+        this.project = config.project || require("os").userInfo().username;
         
         if (this.socketPassword) {
             this.socketConnect();
