@@ -31,6 +31,7 @@ module.exports = class Logger {
         this.socket.on('error', (err) => {
             if (err) console.log('logger socket error ' + err.message);
 
+	    this.socket.destroy();
             this.socket = null;
             var timeout = setTimeout(() => {
                 this.socketConnect();
@@ -114,7 +115,6 @@ module.exports = class Logger {
         socket.connect(this.socketPort, this.socketHost);
         socket.write(JSON.stringify({ type: 'auth', password: this.socketPassword }) + '\n', (err) => {
             if (err) return callback(err);
-            this.socket = socket;
         });
         
         var x = socket.pipe(ndjson.parse());
