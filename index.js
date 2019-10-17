@@ -31,7 +31,7 @@ module.exports = class Logger {
         this.socket.on('error', (err) => {
             if (err) console.log('logger socket error ' + err.message);
 
-	    this.socket.destroy();
+	    this.socket.end();
             this.socket = null;
             var timeout = setTimeout(() => {
                 this.socketConnect();
@@ -125,6 +125,7 @@ module.exports = class Logger {
         });
 
         x.on('data', function (obj) {
+	    socket.end();
             callback(null, obj.data);
         });
         
