@@ -84,6 +84,7 @@ module.exports = class Logger {
                 if (!this.console)
                     return ac();
 
+                // render normal console log
                 var s = key.padStart(this.padSize);
                 if (level == 'warn') s = chalk.yellow(s);
                 if (level == 'error') s = chalk.red(s);
@@ -91,14 +92,15 @@ module.exports = class Logger {
                 if (level == 'ban') s = chalk.magenta(s);
                 console.log((new Date()).toJSON() + ' ' + s + ' ' + message);
 
+                // render nested errors
                 if (obj && obj.err) {
-		    var err = obj.err;
-		    while (true) {
-    			console.log(prettyError.render(err));
-			err = err.err;
-			if (!err) break;
-		    }
-		}
+                    var err = obj.err;
+                    while (true) {
+                        console.log(prettyError.render(err));
+                        err = err.err;
+                        if (!err) break;
+                    }
+                }
 
                 ac();
             }
