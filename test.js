@@ -16,4 +16,13 @@ describe('logger', function () {
         })
     });
 
+    it('should render nested error', function () {
+	var err = new Error('test')
+	var err2 = new Error('nested');
+	err.err = err2;
+        logger.info('test', 'test', {err: err}, function() {
+            assert.equal(true, true);
+        })
+    });
+
 });

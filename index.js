@@ -10,7 +10,7 @@ module.exports = class Logger {
 
     constructor(config) {
         config = config||{}
-        this.console = config.console||true;
+        this.console = typeof config.console === 'undefined' ? true : config.console;
         this.socketPassword = config.socketPassword;
         this.padSize = config.padSize;
         this.socketPort = config.socketPort||3333;
@@ -91,7 +91,14 @@ module.exports = class Logger {
                 if (level == 'ban') s = chalk.magenta(s);
                 console.log((new Date()).toJSON() + ' ' + s + ' ' + message);
 
-                if (obj && obj.err) console.log(prettyError.render(obj.err));
+                if (obj && obj.err) {
+		    var err = obj.err;
+		    while (true) {
+    			console.log(prettyError.render(err));
+			err = err.err;
+			if (!err) break;
+		    }
+		}
 
                 ac();
             }
