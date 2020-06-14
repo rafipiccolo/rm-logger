@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/rafipiccolo/raf-logger#readme",
   "dependencies": {
-    "async": "^3.1.0",
-    "chalk": "^2.4.2",
+    "async": "^3.2.0",
+    "chalk": "^4.1.0",
     "ndjson": "^1.5.0",
     "pretty-error": "^2.1.1",
-    "request": "^2.88.0"
+    "request": "^2.88.2"
   }
 }

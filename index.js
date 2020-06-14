@@ -29,7 +29,7 @@ module.exports = class Logger {
         this.socket.write(JSON.stringify({ type: 'auth', password: this.socketPassword }) + '\n');
 
         this.socket.on('error', (err) => {
-            if (err) console.log('logger socket error ' + err.message);
+            if (err) console.error('logger socket error ' + err.message);
 
 	    this.socket.end();
             this.socket = null;
@@ -86,17 +86,16 @@ module.exports = class Logger {
 
                 // render normal console log
                 var s = key.padStart(this.padSize);
-                if (level == 'warn') s = chalk.yellow(s);
-                if (level == 'error') s = chalk.red(s);
-                if (level == 'info') s = chalk.blue(s);
-                if (level == 'ban') s = chalk.magenta(s);
-                console.log((new Date()).toJSON() + ' ' + s + ' ' + message);
+                if (level == 'warn') console.error((new Date()).toJSON() + ' ' + chalk.yellow(s) + ' ' + message);
+                if (level == 'error') console.error((new Date()).toJSON() + ' ' + chalk.red(s) + ' ' + message);
+                if (level == 'info') console.log((new Date()).toJSON() + ' ' + chalk.blue(s) + ' ' + message);
+                if (level == 'ban') console.log((new Date()).toJSON() + ' ' + chalk.magenta(s) + ' ' + message);
 
                 // render nested errors
                 if (obj && obj.err) {
                     var err = obj.err;
                     while (true) {
-                        console.log(prettyError.render(err));
+                        console.error(prettyError.render(err));
                         err = err.err;
                         if (!err) break;
                     }
@@ -161,7 +160,7 @@ module.exports = class Logger {
         if (!this.socket) return callback();
 
         this.socket.write(JSON.stringify(obj)+'\n', function (err) {
-            if (err) console.log('logger socket write error ' + err.message);
+            if (err) console.error('logger socket write error ' + err.message);
 
             callback(null);
         });
