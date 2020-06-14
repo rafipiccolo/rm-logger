@@ -31,7 +31,7 @@ module.exports = class Logger {
         this.socket.on('error', (err) => {
             if (err) console.error('logger socket error ' + err.message);
 
-	    this.socket.end();
+        this.socket.end();
             this.socket = null;
             var timeout = setTimeout(() => {
                 this.socketConnect();
@@ -92,12 +92,11 @@ module.exports = class Logger {
                 if (level == 'ban') console.log((new Date()).toJSON() + ' ' + chalk.magenta(s) + ' ' + message);
 
                 // render nested errors
-                if (obj && obj.err) {
+                if (obj) {
                     var err = obj.err;
-                    while (true) {
+                    while (err) {
                         console.error(prettyError.render(err));
                         err = err.err;
-                        if (!err) break;
                     }
                 }
 
@@ -133,7 +132,7 @@ module.exports = class Logger {
         });
 
         x.on('data', function (obj) {
-	    socket.end();
+        socket.end();
             callback(null, obj.data);
         });
         
