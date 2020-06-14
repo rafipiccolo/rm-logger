@@ -22,22 +22,5 @@
     "ndjson": "^1.5.0",
     "pretty-error": "^2.1.1",
     "request": "^2.88.2"
-  },
-  "eslintConfig": {
-    "env": {
-        "browser": true,
-        "node": true,
-        "es2020": true,
-        "mocha": true
-    },
-    "extends": "eslint:recommended",
-    "rules": {
-        "no-unused-vars": 0,
-        "no-console": 0,
-        "no-empty": 0,
-        "no-redeclare": 0,
-        "no-useless-escape": 0,
-        "no-inner-declarations": 0
-    }
   }
 }
