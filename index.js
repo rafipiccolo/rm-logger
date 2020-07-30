@@ -86,10 +86,10 @@ module.exports = class Logger {
 
                 // render normal console log
                 var s = key.padStart(this.padSize);
-                if (level == 'warn') console.error((new Date()).toJSON() + ' ' + chalk.yellow(s) + ' ' + message);
-                if (level == 'error') console.error((new Date()).toJSON() + ' ' + chalk.red(s) + ' ' + message);
-                if (level == 'info') console.log((new Date()).toJSON() + ' ' + chalk.blue(s) + ' ' + message);
-                if (level == 'ban') console.log((new Date()).toJSON() + ' ' + chalk.magenta(s) + ' ' + message);
+                if (level == 'warn') console.error((new Date()).toJSON() + ' ' + chalk.yellow(s) + ' ' + message + ' '+JSON.stringify(obj));
+                if (level == 'error') console.error((new Date()).toJSON() + ' ' + chalk.red(s) + ' ' + message + ' '+JSON.stringify(obj));
+                if (level == 'info') console.log((new Date()).toJSON() + ' ' + chalk.blue(s) + ' ' + message + ' '+JSON.stringify(obj));
+                if (level == 'ban') console.log((new Date()).toJSON() + ' ' + chalk.magenta(s) + ' ' + message + ' '+JSON.stringify(obj));
 
                 // render nested errors
                 if (obj) {
