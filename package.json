@@ -20,7 +20,7 @@
     "async": "^3.2.0",
     "chalk": "^4.1.0",
     "ndjson": "^2.0.0",
-    "pretty-error": "^2.1.1",
+    "pretty-error": "^2.1.2",
     "request": "^2.88.2"
   }
 }
