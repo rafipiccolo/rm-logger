@@ -4,7 +4,7 @@ log data to console & my custom monitoring server
 
 # install
 
-	$> npm install raf-logger
+    $> npm install raf-logger
 
 # Usage
 
@@ -16,10 +16,11 @@ log data to console & my custom monitoring server
     logger.getBans();
 
 levels :
-* info
-* warn
-* error
-* ban
+
+-   info
+-   warn
+-   error
+-   ban
 
 # Exemple
 
@@ -32,9 +33,9 @@ see [exemple.js](exemple.js)
 
 # Config
 
-* console : activate console logging
-* padSize : pad "level:key" on X characters
-* socketPassword : activate logging to my custom server
-* socketPort : custom server port
-* socketHost : custom server host
-* project : the project name (used only for socket logging)
+-   console : activate console logging
+-   padSize : pad "level:key" on X characters
+-   socketPassword : activate logging to my custom server
+-   socketPort : custom server port
+-   socketHost : custom server host
+-   project : the project name (used only for socket logging)
