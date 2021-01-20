@@ -74,10 +74,10 @@ module.exports = class Logger {
                             type: 'log',
                             project: this.project,
                             date: new Date().toJSON(),
-                            message: message,
-                            level: level,
-                            key: key,
-                            obj: obj,
+                            message,
+                            level,
+                            key,
+                            obj,
                         },
                         ac
                     );
@@ -150,7 +150,7 @@ module.exports = class Logger {
 
     // push Metric
     metric(name, value, callback) {
-        this.call({ type: 'metric', name: name, value: value }, callback);
+        this.call({ type: 'metric', name, value }, callback);
     }
 
     // getBans
