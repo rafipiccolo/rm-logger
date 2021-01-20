@@ -25,10 +25,10 @@ module.exports = class Logger {
         this.socket = new net.Socket();
         this.socket.unref();
         this.socket.connect(this.socketPort, this.socketHost);
-        this.socket.write(`${JSON.stringify({ type: 'auth', password: this.socketPassword })  }\n`);
+        this.socket.write(`${JSON.stringify({ type: 'auth', password: this.socketPassword })}\n`);
 
         this.socket.on('error', (err) => {
-            if (err) console.error(`logger socket error ${  err.message}`);
+            if (err) console.error(`logger socket error ${err.message}`);
 
             this.socket.end();
             this.socket = null;
@@ -87,14 +87,10 @@ module.exports = class Logger {
 
                     // render normal console log
                     var s = key.padStart(this.padSize);
-                    if (level == 'warn')
-                        console.error(`${new Date().toJSON()  } ${  chalk.yellow(s)  } ${  message  } ${  obj ? JSON.stringify(obj) : ''}`);
-                    if (level == 'error')
-                        console.error(`${new Date().toJSON()  } ${  chalk.red(s)  } ${  message  } ${  obj ? JSON.stringify(obj) : ''}`);
-                    if (level == 'info')
-                        console.log(`${new Date().toJSON()  } ${  chalk.blue(s)  } ${  message  } ${  obj ? JSON.stringify(obj) : ''}`);
-                    if (level == 'ban')
-                        console.log(`${new Date().toJSON()  } ${  chalk.magenta(s)  } ${  message  } ${  obj ? JSON.stringify(obj) : ''}`);
+                    if (level == 'warn') console.error(`${new Date().toJSON()} ${chalk.yellow(s)} ${message} ${obj ? JSON.stringify(obj) : ''}`);
+                    if (level == 'error') console.error(`${new Date().toJSON()} ${chalk.red(s)} ${message} ${obj ? JSON.stringify(obj) : ''}`);
+                    if (level == 'info') console.log(`${new Date().toJSON()} ${chalk.blue(s)} ${message} ${obj ? JSON.stringify(obj) : ''}`);
+                    if (level == 'ban') console.log(`${new Date().toJSON()} ${chalk.magenta(s)} ${message} ${obj ? JSON.stringify(obj) : ''}`);
 
                     // render nested errors
                     if (obj) {
@@ -125,14 +121,14 @@ module.exports = class Logger {
         };
         var socket = new net.Socket();
         socket.connect(this.socketPort, this.socketHost);
-        socket.write(`${JSON.stringify({ type: 'auth', password: this.socketPassword })  }\n`, (err) => {
+        socket.write(`${JSON.stringify({ type: 'auth', password: this.socketPassword })}\n`, (err) => {
             if (err) return callback(err);
         });
 
         var x = socket.pipe(ndjson.parse());
 
         x.on('error', function (err) {
-            socket.end(`${JSON.stringify({ type: 'error', message: 'bad json' })  }\n`);
+            socket.end(`${JSON.stringify({ type: 'error', message: 'bad json' })}\n`);
             return callback(err);
         });
 
@@ -143,7 +139,7 @@ module.exports = class Logger {
 
         socket.on('error', callback);
 
-        socket.write(`${JSON.stringify(obj)  }\n`, function (err) {
+        socket.write(`${JSON.stringify(obj)}\n`, function (err) {
             if (err) return callback(err);
         });
     }
@@ -163,8 +159,8 @@ module.exports = class Logger {
         if (!callback) callback = () => {};
         if (!this.socket) return callback();
 
-        this.socket.write(`${JSON.stringify(obj)  }\n`, function (err) {
-            if (err) console.error(`logger socket write error ${  err.message}`);
+        this.socket.write(`${JSON.stringify(obj)}\n`, function (err) {
+            if (err) console.error(`logger socket write error ${err.message}`);
 
             callback(null);
         });
