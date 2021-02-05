@@ -1,3 +1,5 @@
+'use strict';
+
 var Logger = require('./index.js');
 var config = {
     console: true,

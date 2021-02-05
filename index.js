@@ -1,3 +1,5 @@
+'use strict';
+
 var async = require('async');
 var chalk = require('chalk');
 var errorToObject = require('./lib/errorToObject');

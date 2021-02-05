@@ -1,3 +1,5 @@
+'use strict';
+
 var Logger = require('./index.js');
 var logger = new Logger({ console: false });
 var assert = require('assert');
